@@ -1,0 +1,67 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<section class=" ud">
+    <div class="ud-inn">
+        {% include "main/left.html" %}
+        <!--CENTER SECTION-->
+        <div class="ud-cen">
+            <div class="log-bor">&nbsp;</div>
+            <span class="udb-inst">Edit Profile</span>
+            <div class="ud-cen-s2 ud-pro-edit">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-block alert-danger">
+                            <ul class="m-0">
+                                <li>{{ message }}</li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <h2>Profile Details</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <table class="responsive-table bordered">
+                        <tbody>
+                            <tr>
+                                <td>Profile Picture</td>
+                                <td>{{form.profile|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td>{{form.first_name|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>Middle Name</td>
+                                <td>{{form.middle_name|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>{{form.last_name|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>Suffix Name</td>
+                                <td>{{form.suffix_name|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-lg btn-primary">Save Changes</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!-- END CENTER SECTION -->
+        {% include "main/right.html" %}
+    </div>
+</section>
+    
+{% endblock %}

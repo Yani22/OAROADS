@@ -1,0 +1,281 @@
+{% load static %}
+<!-- START -->
+<section>
+    <div class="str">
+        <div>
+            <!-- NAVBAR START -->
+            <div class="hom-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="hom-nav  db-open ">
+                            <a href="/home" class="top-log">
+                                <img src="{% static 'images/home/smcti-logo.png' %}" style="height: auto; width: 80px;"
+                                    alt="" class="ic-logo">
+                            </a>
+                            <div class="menu">
+                                <h4>Category</h4>
+                            </div>
+                            <div class="pop-menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <i class="material-icons clopme">close</i>
+                                        <div class="pmenu-spri">
+                                            <ul>
+                                                <li><a href="/home/"><img
+                                                            src="{% static 'images/icon/home.png' %}"><strong>Home</strong></a></li>
+                                                <li>
+                                                    <a href="/dashboard" class="db-lact">
+                                                        <img src="{% static 'images/icon/dbl1.png' %}"
+                                                            alt="" />DASHBOARD
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/edit_profile" class>
+                                                        <img src="{% static 'images/icon/profile.png' %}" alt="" />EDIT
+                                                        PROFILE
+                                                    </a>
+                                                </li>
+                                                <li><hr></li>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
+                                                        <Strong>IMPORT CSV</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/import_student_csv" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/students.png' %}" alt="" />
+                                                        Students
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/import_faculty_csv" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
+                                                            alt="" />
+                                                        Faculties
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/import_keyword_csv" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/search1.png' %}" alt="" />
+                                                        Keywords
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="pmenu-spri">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
+                                                        <Strong>ADD ACCOUNT</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/add_admin" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}"
+                                                            alt="" />
+                                                        Admin
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="/add_faculty" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
+                                                            alt="" />
+                                                        Faculty
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="/add_student" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/students.png' %}" alt="" />
+                                                        Student
+                                                    </a>
+                                                    <hr>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
+                                                        <Strong>ADD RESEARCH</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/add_keyword" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/search1.png' %}" alt="" />
+                                                        Keyword
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/add_research" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/blog1.png' %}" alt="" />
+                                                        Research
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="pmenu-spri">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <img src="{% static 'images/icon/blog1.png' %}" alt=""/>
+                                                        <Strong>REPORT</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <Strong>Annual Summary</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/researcher" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/researcher_icon.png' %}"
+                                                            alt="" />
+                                                        Researchers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <Strong>Research Outputs</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/student" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/students.png' %}" alt="" />
+                                                        Students
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/faculty" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}"
+                                                            alt="" />
+                                                        Faculties
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/program" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/programs.png' %}" alt="" />
+                                                        Programs
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="pmenu-spri">
+                                            <ul>
+                                                
+                                                <li>
+                                                    <a href="#" class>
+                                                        <Strong>List of All</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/research_output" class>
+                                                        &nbsp;&nbsp;&nbsp;<img
+                                                            src="{% static 'images/icon/research_outputs.png' %}"
+                                                            alt="" />
+                                                        Research Outputs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/authors_titles" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
+                                                            alt="" />
+                                                        Authors & Titles
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class>
+                                                        <Strong>History</Strong>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/login_history" class>
+                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/blog.png' %}"
+                                                            alt="" />
+                                                        Login Histories
+                                                    </a>
+                                                    <hr>
+                                                </li>
+                                                <li>
+                                                    <a href="/logout" class>
+                                                        <img src="{% static 'images/icon/dbl12.png' %}" alt="" />
+                                                        <strong>LOGOUT</strong>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!--SIDE BAR MOBILE MENU-->
+                                    <div class="mob-menu">
+                                        <div class="mob-me-ic">
+                                            <i class="material-icons">menu</i>
+                                        </div>
+                                        <div class="mob-me-all">
+                                            <div class="mob-me-clo">
+                                                <i class="material-icons">close</i>
+                                            </div>
+                                            <div class="mv-pro ud-lhs-s1">
+                                                <img src="{{request.user.enduser.profile_image.url}}" alt="">
+                                                <h4>{{request.user.enduser.first_name}}&nbsp;{{request.user.enduser.middle_name}}&nbsp;{{request.user.enduser.last_name}}
+                                                </h4>
+                                                <b> {{request.user.enduser.program.program_type}}</b>
+                                            </div>
+                                            <div class="mv-pro-menu ud-lhs-s2">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#" class="db-lact">
+                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/dbl1.png"
+                                                                alt="" /> My Dashboard
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="">
+                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/shop.png"
+                                                                alt="" />All Listings
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class=""><img
+                                                                src="https://bizbookdirectorytemplate.com/images/icon/dbl210.png"
+                                                                alt="" />Setting
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/logout">
+                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/dbl12.png"
+                                                                alt="" />Log Out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="mv-cate">
+                                                <h4>All Categories</h4>
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">Hotels And Resorts</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--END SIDE BAR MOBILE MENU-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NAVBAR END -->
+        </div>
+    </div>
+</section>
+<!-- END -->

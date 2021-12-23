@@ -1,0 +1,93 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Research{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/new_css/bootstrap-select.css' %}" />
+{% endblock extra_css %}
+
+{% block content %}
+<section class=" login-reg">
+    <div class="container">
+        <div class="row">
+            <div class="login-main">
+                <div class="log-bor">&nbsp;</div>
+                <div class="log log-1">
+                    <div class="login">
+                        <h4>Add a research</h4>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-block alert-danger">
+                            <ul class="m-0">
+                                <li>{{ message }}</li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="fv-row mb-7">
+                                <strong class="text-dark fs-6 form-label fw-bolder">
+                                    {{form.title|as_crispy_field}}
+
+                                    Keyword
+                                    <br>
+                                    <select multiple="multiple" name="keyword" id="keyword" title="" multiple data-live-search="true">
+                                        {% for keywords in keyword %}
+                                            <option value="{{keywords.id}}">{{keywords}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div>
+                                        <br>
+                                    </div>
+
+                                    Author*
+                                    <br>
+                                    <select multiple="multiple" name="author" id="author" title="" multiple data-live-search="true" required>
+                                        {% for authors in author %}
+                                            <option value="{{authors.id}}">
+                                                {{authors.first_name}}
+                                                {{authors.middle_name}}
+                                                {{authors.last_name}}
+                                                {{authors.first_suffix}}
+                                                
+                                                {% if authors.is_student == True %}
+                                                ({{authors.program.name}} - Student)
+                                                {% elif authors.is_faculty == True %}
+                                                ({{authors.program.name}} - Faculty)
+                                                {% elif authors.is_admin == True %}
+                                                (Admin)
+                                                {% endif %}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                    <div>
+                                        <br>
+                                    </div>
+
+                                    {{form.pdf|as_crispy_field}}
+                                    {{form.school_year|as_crispy_field}}
+                                </strong>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                                    <span class="indicator-label">Submit</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/newjs/bootstrap-select.min.js' %}"></script>
+<script>
+    $('select').selectpicker();
+</script>
+{% endblock extra_scripts %}

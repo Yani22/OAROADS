@@ -1,0 +1,21 @@
+{% load static %}
+
+<!--RIGHT SECTION-->
+<div class="ud-rhs">
+    <div class="ud-rhs-sec-1">
+        <h4>Login History</h4>
+        <ul>
+            {% for his in log_his %}
+                {% if forloop.counter <= 10 %}
+                    <li>
+                        <a href="/login_history">
+                            <h5>{{his.end_user.first_name}}&nbsp;{{his.end_user.last_name}}&nbsp;</h5>
+                            <p>{{his.login_date}}</p>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <a href="/login_history">View all</a>
+        </ul>
+    </div>
+</div>

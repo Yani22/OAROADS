@@ -1,0 +1,100 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<section class=" ud">
+    <div class="ud-inn">
+        {% include "main/left.html" %}
+
+        <!--CENTER SECTION-->
+        <div class="ud-cen">
+            <div class="log-bor">&nbsp;</div>
+                <span class="udb-inst">Dashboard</span>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-block alert-danger">
+                            <ul class="m-0">
+                                <li>{{ message }}</li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% for end_user in end_users %}
+                    <div class="cd-cen-intr">
+                        <div class="cd-cen-intr-inn">
+                            <h2>Welcom back, <b>{{end_user.first_name}}</b></h2>
+                            <p>Stay up to date in your researches here.</p>
+                        </div>
+                    </div>
+                    <div class="ud-cen-s1">
+                        <ul>
+                            <li>
+                                <div> 
+                                    <b>{{total_faculty}}</b>
+                                    <h4>Faculty</h4>
+                                    <p>Total No.</p>
+                                    <a href="#">&nbsp;</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <b>{{total_res_out}}</b>
+                                    <h4>Research</h4>
+                                    <p>Total No.</p>
+                                    <a href="#">&nbsp;</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <b>{{total_student}}</b>
+                                    <h4>Student</h4>
+                                    <p>Total No.</p>
+                                    <a href="#">&nbsp;</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- START -->
+                    <div class="ud-cen-s3 ud-cen-s4">
+                        <h2>Profile page</h2>
+                        <a href="/edit_profile" class="db-tit-btn">Edit profile page</a>
+                        <div class="ud-payment ud-pro-link">
+                            <div class="pay-lhs">
+                                <div class="lis-pro-badg">
+                                    <div>
+                                        <img src="{{request.user.enduser.profile.url}}" alt="">
+                                        <h4>{{end_user.first_name}}</h4>
+                                    </div>
+                                    <a href="/edit_profile" class="fclick"
+                                        target="_blank">&nbsp;</a>
+                                </div>
+                            </div>
+                            <div class="pay-rhs">
+                                <ul>
+                                    <li><b>Name: </b>{{end_user.first_name}}</li>
+                                    <li><b>Email: </b>{{end_user.email}}</li>
+                                    <li><b>Address: </b>{{end_user.address}}</li>
+                                    <li class="pro"><input type="text" value="http://127.0.0.1:8000/edit_profile/"
+                                            readonly></li>
+                                    <li class="pre"><a target="_blank"
+                                            href="/edit_profile">View my profile page</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END -->
+                {% endfor %}
+        </div>
+        <!-- END CENTER SECTION -->
+
+        {% include "main/right.html" %}
+    </div>
+</section>
+
+{% endblock %}

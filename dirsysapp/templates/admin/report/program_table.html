@@ -1,0 +1,53 @@
+{% load static %}
+<!-- START -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="ban-tit">
+                <h1 style="color: black;">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-block alert-danger">
+                                <ul class="m-0">
+                                    <li>{{ message }}</li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <b style="color: black;"><br>PROGRAM'S</b>Research Output Summary
+                </h1>
+
+            </div>
+        </div>
+        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+                {{date_user|linebreaks}}
+                <br>
+                <tr>
+                    <th data-visible="false">keywords</th>
+                    <th>Program</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>School Year</th>
+                </tr>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in res_out %}
+            {% for key in res.keyword.all %}
+                {% for author in res.author.all %}
+                        <tr>
+                            <td>{{key}}</td>
+                            <td>{{author.program.name}}</td>
+                            <td><a href="{{res.pdf.url}}">{{res.title}}</a></td>
+                            <td>{{author.first_name}}&nbsp;{{author.middle_name}}&nbsp;{{author.last_name}}&nbsp;{{author.suffix_name}}<br></td>
+                            <td>{{res.school_year}}</td>
+                        </tr>
+                {% endfor %}
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</section>
+<!--END-->

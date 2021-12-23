@@ -1,0 +1,158 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!--== META TAGS ==-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#76cef1" />
+    <meta property="og:image" content="{% static 'images/home/smcti-logo.png' %}" />
+    <meta name="description" content="DIRSYS....">
+    <meta name="keyword" content="DIRSYS....">
+    <!--== FAV ICON(BROWSER TAB ICON) ==-->
+    <link rel="shortcut icon" href="{% static 'images/fav.ico' %}" type="image/x-icon">
+    <!--== GOOGLE FONTS ==-->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700|Source+Sans+Pro:300,400,600,700&display=swap"
+        rel="stylesheet">
+    <!--== WEB ICON FONTS ==-->
+    <link rel="preload" as="font" href="{% static 'css/new_css/icon.woff2' %}" type="font/woff2"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--== CSS FILES ==-->
+    {% block extra_css %}
+    {% endblock extra_css %}
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'css/new_css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/new_css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new_css/theme-color.css' %}">
+    <link rel="stylesheet" href="{% static 'css/new_css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/new_css/fonts.css' %}">
+    
+</head>
+
+<body>
+
+    {% include "main/nav.html" %}
+
+    <!--START PRICING DETAILS-->
+    {% block content %}
+    
+    <!-- Preloader
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div> -->
+    {% endblock %}
+    <!--END PRICING DETAILS-->
+
+    <!-- START -->
+        <section class=" wed-hom-footer">
+            <div class="container">
+                <div class="row foot-supp">
+                    <h2>St. Mary's College of Tagum, Inc. &nbsp;&nbsp;|&nbsp;&nbsp; 
+                        www.smctagum.edu.ph</h2>
+                        <p style="width: auto; margin: auto;">Daang Maharlika Hwy, Tagum, Davao del Norte, 8100, Philippines</p>
+                        <h2></h2>
+                        <p style="width: auto; margin: auto;">(084) 217 3687 | smcttagum@gmail.com</p>
+                        
+                </div>
+                <div class="row wed-foot-link-1 row foot-count">     
+                        <a target="_blank" href="https://twitter.com/CMV_SMCTI" style="margin-left: auto; margin-right: auto;">
+                            <img src="{% static 'images/social/2.png' %}" alt="">
+                        </a>
+                        <a target="_blank" href="https://www.facebook.com/stmaryscollegetagum/" style="margin-left: auto; margin-right: auto;">
+                            <img src="{% static 'images/social/3.png' %}" alt="">
+                        </a>
+                </div>
+            </div>
+        </section>
+        <!-- END -->
+
+        <!-- START -->
+        <section>
+            <div class="cr">
+                <div class="container">
+                    <div class="row">
+                        <p>Copyright © 2021 <a href="#" target="_blank">SMCTI</a>. Proudly
+                            powered by <a href="#" target="_blank">SMCTI</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END -->
+
+        <!-- START -->
+        <div class="fqui-menu">
+            <ul>
+                <li><a href="/home"><img src="{% static 'images/icon/home.png' %}">Home</a></li>
+                {% if request.user.enduser.is_active == True %}
+                {% if request.user.enduser.is_admin == True %}
+                <li>
+                    <a href="/dashboard" class="db-lact">
+                        <img src="{% static 'images/icon/dbl1.png' %}" alt="" /><strong>DASHBOARD</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/edit_profile" class>
+                        <img src="{% static 'images/icon/profile.png' %}" alt="" /><strong>EDIT PROFILE</strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/add_admin" class>
+                        <img src="{% static 'images/icon/how1.png' %}"alt="" />
+                        <Strong>Add Admin</Strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/add_faculty" class>
+                        <img src="{% static 'images/icon/4.png' %}"alt="" />
+                        <Strong>Add Faculty</Strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="/add_student" class>
+                        <img src="{% static 'images/icon/students.png' %}" alt="" />
+                        <Strong>Add Student</Strong>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class>
+                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
+                        <Strong>ADD RESEARCH</Strong>
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="/logout" class>
+                        <img src="{% static 'images/icon/dbl12.png' %}" alt="" /><strong>LOGOUT</strong>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- END -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/newjs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/newjs/popper.min.js' %}"></script>
+    <script src="{% static 'js/newjs/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/newjs/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/newjs/select-opt.js' %}"></script>
+    <script src="{% static 'js/newjs/custom.js' %}"></script>
+    <script src="{% static 'js/newjs/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/newjs/custom_validation.js' %}"></script>
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+
+</body>
+
+</html>
+<!--
+<style>
+    .ud-cen .log-bor {
+        display: none;
+    }
+</style>
+-->

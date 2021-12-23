@@ -1,0 +1,177 @@
+
+{% load static %}
+
+<!--LEFT SECTION-->
+<div class="ud-lhs">
+    <div class="ud-lhs-s1">
+        <img src="{{request.user.enduser.profile.url}}" alt="">
+        <h4>{{request.user.enduser.first_name}}&nbsp;{{request.user.enduser.middle_name}}
+            <br>
+            {{request.user.enduser.last_name}}&nbsp;{{request.user.enduser.suffix_name}}
+        </h4>
+        <b><strong>(ADMIN)</strong></b>
+    </div>
+    <div class="ud-lhs-s2">
+        <ul>
+            <li>
+                <a href="/dashboard" class="db-lact">
+                    <img src="{% static 'images/icon/dbl1.png' %}" alt=""/>
+                    <strong>DASHBOARD</strong>
+                </a>
+            </li>
+            <li>
+                <a href="/edit_profile" class>
+                    <img src="{% static 'images/icon/profile.png' %}" alt=""/>
+                    <strong>EDIT PROFILE</strong>
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="#" class>
+                    <img src="{% static 'images/icon/dbl3.png' %}" alt=""/>
+                    <Strong>IMPORT CSV</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/import_student_csv" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/students.png' %}" alt=""/>
+                    Students
+                </a>
+            </li>
+            <li>
+                <a href="/import_faculty_csv" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}" alt=""/>
+                    Faculties
+                </a>
+            </li>
+            <li>
+                <a href="/import_keyword_csv" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/search1.png' %}" alt=""/>
+                    Keywords
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="#" class>
+                    <img src="{% static 'images/icon/dbl3.png' %}" alt=""/>
+                    <Strong>ADD ACCOUNT</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/add_admin" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}" alt=""/>
+                    Admin
+                </a>
+            </li>
+
+            <li>
+                <a href="/add_faculty" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}" alt=""/>
+                    Faculty
+                </a>
+            </li>
+
+            <li>
+                <a href="/add_student" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/students.png' %}" alt=""/>
+                    Student
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="#" class>
+                    <img src="{% static 'images/icon/dbl3.png' %}" alt=""/>
+                    <Strong>ADD RESEARCH</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/add_keyword" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/search1.png' %}" alt=""/>
+                    Keyword
+                </a>
+            </li>
+            <li>
+                <a href="/add_research" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/blog1.png' %}" alt=""/>
+                    Research
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="#" class>
+                    <img src="{% static 'images/icon/blog1.png' %}" alt=""/>
+                    <Strong>REPORT</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="#" class>
+                    <Strong>Annual Summary</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/researcher" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/researcher_icon.png' %}" alt=""/>
+                    Researchers
+                </a>
+            </li>
+            <li>
+                <a href="#" class>
+                    <Strong>Research Outputs</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/student" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/students.png' %}" alt=""/>
+                    Students
+                </a>
+            </li>
+            <li>
+                <a href="/faculty" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}" alt=""/>
+                    Faculties
+                </a>
+            </li>
+            <li>
+                <a href="/program" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/programs.png' %}" alt=""/>
+                    Programs
+                </a>
+            </li>
+            <li>
+                <a href="#" class>
+                    <Strong>List of All</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/research_output" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/research_outputs.png' %}" alt=""/>
+                    Research Outputs
+                </a>
+            </li>
+            <li>
+                <a href="/authors_titles" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}" alt="" />
+                    Authors & Titles
+                </a>
+            </li>
+            <li>
+                <a href="#" class>
+                    <Strong>History</Strong>
+                </a>
+            </li>
+            <li>
+                <a href="/login_history" class>
+                    &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/blog.png' %}" alt=""/>
+                    Login Histories
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="/logout" class>
+                    <img src="{% static 'images/icon/dbl12.png' %}" alt=""/>
+                    <strong>LOGOUT</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

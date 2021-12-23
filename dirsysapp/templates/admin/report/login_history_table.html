@@ -1,0 +1,42 @@
+{% load static %}
+<!-- START -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="ban-tit">
+                <h1 style="color: black;">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-block alert-danger">
+                                <ul class="m-0">
+                                    <li>{{ message }}</li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <b style="color: black;">Login History<br></b>
+                </h1>
+
+            </div>
+        </div>
+        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+                {{date_user|linebreaks}}
+                <br>
+                <tr>
+                    <th>Name(First, Middle, Last, Suffix)</th>
+                    <th>Login Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for his in log_his %}
+                    <tr>
+                        <td>{{his.end_user.first_name}}&nbsp;{{his.end_user.middle_name}}&nbsp;{{his.end_user.last_name}}&nbsp;{{his.end_user.suffix}}</td>
+                        <td>{{his.login_date}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<!--END-->
