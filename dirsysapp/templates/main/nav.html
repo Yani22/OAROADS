@@ -1,9 +1,10 @@
 {% load static %}
-<!-- START -->
+<!--
+<!-- START 
 <section>
     <div class="str">
         <div>
-            <!-- NAVBAR START -->
+            <!-- NAVBAR START 
             <div class="hom-top">
                 <div class="container">
                     <div class="row">
@@ -21,261 +22,296 @@
                                         <i class="material-icons clopme">close</i>
                                         <div class="pmenu-spri">
                                             <ul>
-                                                <li><a href="/home/"><img
-                                                            src="{% static 'images/icon/home.png' %}"><strong>Home</strong></a></li>
-                                                <li>
-                                                    <a href="/dashboard" class="db-lact">
-                                                        <img src="{% static 'images/icon/dbl1.png' %}"
-                                                            alt="" />DASHBOARD
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/edit_profile" class>
-                                                        <img src="{% static 'images/icon/profile.png' %}" alt="" />EDIT
-                                                        PROFILE
-                                                    </a>
-                                                </li>
-                                                <li><hr></li>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
-                                                        <Strong>IMPORT CSV</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/import_student_csv" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/students.png' %}" alt="" />
-                                                        Students
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/import_faculty_csv" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
-                                                            alt="" />
-                                                        Faculties
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/import_keyword_csv" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/search1.png' %}" alt="" />
-                                                        Keywords
-                                                    </a>
-                                                </li>
+                                                <li><a href="/home" class="act"><img src="{% static 'images/icon/home.png' %}">Home</a></li>
+                                                {% if request.user.is_authenticated %}
+                                                    {% if request.user.is_superuser == True %}
+                                                        <li><a href="/dashboard" class="act"><img src="{% static 'images/icon/dbl1.png' %}">Dashboard</a></li>
+                                                        <li><a href="/add_admin" class="act"><img src="{% static 'images/icon/how1.png' %}">Add Admin</a></li>
+                                                        <li><a href="/add_keyword"><img src="{% static 'images/icon/search1.png' %}">Add Keyword</a></li>
+                                                        <li><a href="/add_research"><img src="{% static 'images/icon/blog1.png' %}">Add Research</a></li>
+                                                        <li><a href="/login_history"><img src="{% static 'images/icon/blog.png' %}">Login History</a></li>
+                                                    {% else %}
+                                                        <li><a href="/my_account" class="act"><img src="{% static 'images/icon/profile.png' %}">My Account</a><hr></li>
+                                                    {% endif %}
+                                                    <li><a href="/logout"><img src="{% static 'images/icon/logout.png' %}">Logout</a></li>
+                                                {% else %}
+                                                    <li><a href="/login"><img src="{% static 'images/icon/login.png' %}">Login</a></li> 
+                                                {% endif %}
                                             </ul>
                                         </div>
-                                        <div class="pmenu-spri">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
-                                                        <Strong>ADD ACCOUNT</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/add_admin" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}"
-                                                            alt="" />
-                                                        Admin
-                                                    </a>
-                                                </li>
+                                        <div class="pmenu-cat">
+                                            <h4>All Categories</h4>
+                                            <ul id="pg-resu">
+                                                <li><a href="/home">Home</a></li>
+                                                {% if request.user.is_authenticated %}
+                                                    {% if request.user.is_superuser == True %}
+                                                        <li><a href="/dashboard">Dashboard<span></span></a></li>
+                                                        <li><a href="/edit_profile">Edit Profile <span></span></a></li>
 
-                                                <li>
-                                                    <a href="/add_faculty" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
-                                                            alt="" />
-                                                        Faculty
-                                                    </a>
-                                                </li>
+                                                        <li><a href="/add_admin">Add Admin</a></li>
+                                                        <li><a href="/add_student">Add Student</a></li>
+                                                        <li><a href="/add_faculty">Add Faculty</a></li>
+                                                        
+                                                        <li><a href="/add_research">Add Research Output</a></li>
+                                                        <li><a href="/add_keyword">Add Keyword</a></li>
+                                                        <li><a href="/import_student_csv">Import Student CSV </a></li>
+                                                        <li><a href="/import_faculty_csv">Import Faculty CSV</a></li>
+                                                        <li><a href="/import_keyword_csv">Import Keyword CSV</a></li>
 
-                                                <li>
-                                                    <a href="/add_student" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/students.png' %}" alt="" />
-                                                        Student
-                                                    </a>
-                                                    <hr>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <img src="{% static 'images/icon/dbl3.png' %}" alt="" />
-                                                        <Strong>ADD RESEARCH</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/add_keyword" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/search1.png' %}" alt="" />
-                                                        Keyword
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/add_research" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/blog1.png' %}" alt="" />
-                                                        Research
-                                                    </a>
-                                                </li>
+                                                        <li><a href="/all_admin">Admin Accounts</a></li>
+                                                        <li><a href="/all_student">Student Accounts</a></li>
+                                                        <li><a href="/all_faculty">Faculty Accounts</a></li>
+
+                                                        <li><a href="/researcher">Researcher's Annual Summary</a></li>
+                                                        <li><a href="/student">Research Outputs by Students</a></li>
+                                                        <li><a href="/faculty">Research Outputs by Facultys</a></li>
+                                                        <li><a href="/program">Research Outputs by Programs</a></li>
+                                                        <li><a href="/research_output">All Research Output</a></li>
+                                                        <li><a href="/authors_titles">All Authors & Titles</a></li>
+                                                        <li><a href="/login_history">Login History</a></li>
+                                                    {% else %}
+                                                    <li><a href="/my_account">My Account</a></li>
+                                                    {% endif %}
+                                                    <li><a href="/logout">Logout</a></li>
+                                                {% else %}
+                                                    <li><a href="/login">Login</a></li>
+                                                {% endif %}
                                             </ul>
                                         </div>
-                                        <div class="pmenu-spri">
+                                        <div class="dir-home-nav-bot">
                                             <ul>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <img src="{% static 'images/icon/blog1.png' %}" alt=""/>
-                                                        <Strong>REPORT</Strong>
-                                                    </a>
+                                                <li>St. Mary's College of Tagum, Inc. | www.smctagum.edu.ph<span>Call us on: (084) 217 3687</span></li>
+                                                <li><a href="/home"
+                                                       class="waves-effect waves-light btn-large"> <i
+                                                            class="material-icons">store</i> Home</a>
                                                 </li>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <Strong>Annual Summary</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/researcher" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/researcher_icon.png' %}"
-                                                            alt="" />
-                                                        Researchers
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <Strong>Research Outputs</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/student" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/students.png' %}" alt="" />
-                                                        Students
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/faculty" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/how1.png' %}"
-                                                            alt="" />
-                                                        Faculties
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/program" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/programs.png' %}" alt="" />
-                                                        Programs
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="pmenu-spri">
-                                            <ul>
-                                                
-                                                <li>
-                                                    <a href="#" class>
-                                                        <Strong>List of All</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/research_output" class>
-                                                        &nbsp;&nbsp;&nbsp;<img
-                                                            src="{% static 'images/icon/research_outputs.png' %}"
-                                                            alt="" />
-                                                        Research Outputs
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/authors_titles" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/4.png' %}"
-                                                            alt="" />
-                                                        Authors & Titles
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class>
-                                                        <Strong>History</Strong>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/login_history" class>
-                                                        &nbsp;&nbsp;&nbsp;<img src="{% static 'images/icon/blog.png' %}"
-                                                            alt="" />
-                                                        Login Histories
-                                                    </a>
-                                                    <hr>
-                                                </li>
-                                                <li>
-                                                    <a href="/logout" class>
-                                                        <img src="{% static 'images/icon/dbl12.png' %}" alt="" />
-                                                        <strong>LOGOUT</strong>
-                                                    </a>
-                                                </li>
+                                                {% if request.user.is_authenticated %}
+                                                    <li><a href="/logout"
+                                                        class="waves-effect waves-light btn-large"><i
+                                                                class="material-icons"></i> Logout</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li><a href="/login"
+                                                        class="waves-effect waves-light btn-large"><i
+                                                            class="material-icons"></i> Login</a>
+                                                    </li>
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </div>
-
-                                    <!--SIDE BAR MOBILE MENU-->
-                                    <div class="mob-menu">
-                                        <div class="mob-me-ic">
-                                            <i class="material-icons">menu</i>
-                                        </div>
-                                        <div class="mob-me-all">
-                                            <div class="mob-me-clo">
-                                                <i class="material-icons">close</i>
-                                            </div>
-                                            <div class="mv-pro ud-lhs-s1">
-                                                <img src="{{request.user.enduser.profile_image.url}}" alt="">
-                                                <h4>{{request.user.enduser.first_name}}&nbsp;{{request.user.enduser.middle_name}}&nbsp;{{request.user.enduser.last_name}}
-                                                </h4>
-                                                <b> {{request.user.enduser.program.program_type}}</b>
-                                            </div>
-                                            <div class="mv-pro-menu ud-lhs-s2">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#" class="db-lact">
-                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/dbl1.png"
-                                                                alt="" /> My Dashboard
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="">
-                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/shop.png"
-                                                                alt="" />All Listings
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class=""><img
-                                                                src="https://bizbookdirectorytemplate.com/images/icon/dbl210.png"
-                                                                alt="" />Setting
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/logout">
-                                                            <img src="https://bizbookdirectorytemplate.com/images/icon/dbl12.png"
-                                                                alt="" />Log Out
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="mv-cate">
-                                                <h4>All Categories</h4>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Hotels And Resorts</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--END SIDE BAR MOBILE MENU-->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- NAVBAR END -->
+            <!-- NAVBAR END 
         </div>
     </div>
 </section>
-<!-- END -->
+<!-- END 
+-->
+<!-- START -->
+<section>
+    <div class="str">
+        <div class="hom-top">
+            <div class="container">
+                <div class="row">
+                    <div class="hom-nav ">
+                        <a href="/home" class="top-log">
+                            <img src="{% static 'images/home/smcti-logo.png' %}" style="height: auto; width: 80px;"
+                                alt="" class="ic-logo">
+                        </a>
+                        <!--MOBILE MENU-->
+                        <a href="https://bizbookdirectorytemplate.com/" class="top-log"><img
+                                src="#" style="width: 192px; height: auto;" alt=""
+                                class="ic-logo"></a>
+                        <div class="menu">
+                            <h4>All Category</h4>
+                        </div>
+                        <div class="pop-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <i class="material-icons clopme">close</i>
+                                    <div class="pmenu-spri">
+                                        <ul>
+                                            <li><a href="/home" class="act"><img
+                                                        src="{% static 'images/icon/home.png' %}">Home</a></li>
+                                            {% if request.user.is_authenticated %}
+                                            {% if request.user.is_superuser == True %}
+                                            <li><a href="/dashboard" class="act"><img
+                                                        src="{% static 'images/icon/dbl1.png' %}">Dashboard</a></li>
+                                            <li><a href="/add_admin" class="act"><img
+                                                        src="{% static 'images/icon/how1.png' %}">Add Admin</a></li>
+                                            <li><a href="/add_keyword"><img
+                                                        src="{% static 'images/icon/search1.png' %}">Add Keyword</a>
+                                            </li>
+                                            <li><a href="/add_research"><img
+                                                        src="{% static 'images/icon/blog1.png' %}">Add Research</a></li>
+                                            <li><a href="/login_history"><img
+                                                        src="{% static 'images/icon/blog.png' %}">Login History</a></li>
+                                            {% else %}
+                                            <li><a href="/my_account" class="act"><img
+                                                        src="{% static 'images/icon/profile.png' %}">My Account</a>
+                                                <hr>
+                                            </li>
+                                            {% endif %}
+                                            <li><a href="/logout"><img
+                                                        src="{% static 'images/icon/logout.png' %}">Logout</a></li>
+                                            {% else %}
+                                            <li><a href="/login"><img
+                                                        src="{% static 'images/icon/login.png' %}">Login</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <div class="pmenu-cat">
+                                        <h4>All Categories</h4>
+                                        <ul id="pg-resu">
+                                            <li><a href="/home">Home</a></li>
+                                            {% if request.user.is_authenticated %}
+                                            {% if request.user.is_superuser == True %}
+                                            <li><a href="/dashboard">Dashboard<span></span></a></li>
+                                            <li><a href="/edit_profile">Edit Profile <span></span></a></li>
+
+                                            <li><a href="/add_admin">Add Admin</a></li>
+                                            <li><a href="/add_student">Add Student</a></li>
+                                            <li><a href="/add_faculty">Add Faculty</a></li>
+
+                                            <li><a href="/add_research">Add Research Output</a></li>
+                                            <li><a href="/add_keyword">Add Keyword</a></li>
+                                            <li><a href="/import_student_csv">Import Student CSV </a></li>
+                                            <li><a href="/import_faculty_csv">Import Faculty CSV</a></li>
+                                            <li><a href="/import_keyword_csv">Import Keyword CSV</a></li>
+
+                                            <li><a href="/all_admin">Admin Accounts</a></li>
+                                            <li><a href="/all_student">Student Accounts</a></li>
+                                            <li><a href="/all_faculty">Faculty Accounts</a></li>
+
+                                            <li><a href="/researcher">Researcher's Annual Summary</a></li>
+                                            <li><a href="/student">Research Outputs by Students</a></li>
+                                            <li><a href="/faculty">Research Outputs by Facultys</a></li>
+                                            <li><a href="/program">Research Outputs by Programs</a></li>
+                                            <li><a href="/research_output">All Research Output</a></li>
+                                            <li><a href="/authors_titles">All Authors & Titles</a></li>
+                                            <li><a href="/login_history">Login History</a></li>
+                                            {% else %}
+                                            <li><a href="/my_account">My Account</a></li>
+                                            {% endif %}
+                                            <li><a href="/logout">Logout</a></li>
+                                            {% else %}
+                                            <li><a href="/login">Login</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                    <div class="dir-home-nav-bot">
+                                        <ul>
+                                            <li>St. Mary's College of Tagum, Inc. | www.smctagum.edu.ph<span>Call us on:
+                                                    (084) 217 3687</span></li>
+                                            <li><a href="/home" class="waves-effect waves-light btn-large"> <i
+                                                        class="material-icons">store</i> Home</a>
+                                            </li>
+                                            {% if request.user.is_authenticated %}
+                                            <li><a href="/logout" class="waves-effect waves-light btn-large"><i
+                                                        class="material-icons"></i> Logout</a>
+                                            </li>
+                                            {% else %}
+                                            <li><a href="/login" class="waves-effect waves-light btn-large"><i
+                                                        class="material-icons"></i> Login</a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END MOBILE MENU-->
+
+                        <div class="top-ser">
+                        </div>
+                        <ul class="bl">
+                            {% if request.user.is_authenticated %}
+                            <li><a href="/logout" class="waves-effect waves-light btn-large"><i
+                                        class="material-icons"></i> Logout</a>
+                            </li>
+                            {% else %}
+                            <li><a href="/login" class="waves-effect waves-light btn-large"><i
+                                        class="material-icons"></i> Login</a>
+                            </li>
+                            {% endif %}
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser == True %}
+                            <li>
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="/my_account">My Account</a>
+                            </li>
+                            {% endif %}
+                            {% endif %}
+                        </ul>
+                        <!--MOBILE MENU-->
+                        <div class="mob-menu">
+                            <div class="mob-me-ic"><i class="material-icons">menu</i></div>
+                            <div class="mob-me-all">
+                                <div class="mob-me-clo"><i class="material-icons">close</i></div>
+                                <div class="mv-bus">
+                                    <h4></h4>
+                                    <ul>
+                                        {% if request.user.is_authenticated %}
+                                        <li><a href="/logout" class="waves-effect waves-light btn-large"><i
+                                                    class="material-icons"></i> Logout</a>
+                                        </li>
+                                        {% else %}
+                                        <li><a href="/login" class="waves-effect waves-light btn-large"><i
+                                                    class="material-icons"></i> Login</a>
+                                        </li>
+                                        {% endif %}
+                                        {% if request.user.is_authenticated %}
+                                        {% if request.user.is_superuser == True %}
+                                        <li>
+                                            <a href="/dashboard">Dashboard</a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <a href="/my_account">My Account</a>
+                                        </li>
+                                        {% endif %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                <div class="mv-cate">
+                                    <h4>All Categories</h4>
+                                    <ul>
+                                        <li><a href="/home" class="act">Home</a></li>
+                                        {% if request.user.is_authenticated %}
+                                        {% if request.user.is_superuser == True %}
+                                        <li><a href="/dashboard" class="act">Dashboard</a></li>
+                                        <li><a href="/add_admin" class="act">Add Admin</a></li>
+                                        <li><a href="/add_keyword">Add
+                                                Keyword</a>
+                                        </li>
+                                        <li><a href="/add_research">Add
+                                                Research</a></li>
+                                        <li><a href="/login_history">Login History</a></li>
+                                        {% else %}
+                                        <li><a href="/my_account" class="act">My Account</a>
+                                            <hr>
+                                        </li>
+                                        {% endif %}
+                                        <li><a href="/logout">Logout</a></li>
+                                        {% else %}
+                                        <li><a href="/login">Login</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--END MOBILE MENU-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -5,10 +5,13 @@ from . import views
 
 app_name = 'reports'
 
-urlpatterns = [   
+urlpatterns = [ 
     ### #####-ALL USERS-##### ###
     path('home/', views.home, name="home"),
     path("login/", views.login_user, name="login"),
+    path("change_password/", views.change_password, name="change_password"),
+    path("forgot_password/", views.forgot_password, name="forgot_password"),
+    path("my_account/", views.my_account, name="my_account"),
     ### #####-ALL USERS-##### ###
 
     #### #####-ADMIN-##### ####
@@ -23,28 +26,24 @@ urlpatterns = [
 
     #### #####-REPORTS/PDF-##### ####
     path('researcher/', views.researcher, name='researcher'),
-    path('reports_researcher/', views.reports_researcher, name='reports_researcher'),
-    path('faculty/', views.faculty, name='faculty'), 
-    path('reports_faculty/', views.reports_faculty, name='reports_faculty'),
+    path('faculty/', views.faculty, name='faculty'),
     path('student/', views.student, name='student'),
-    path('reports_student/', views.reports_student, name='reports_student'),
     path('authors_titles/', views.authors_titles, name='authors_titles'),
-    path('reports_author_title/', views.reports_author_title, name='reports_author_title'),
     path('research_output/', views.research_output, name='research_output'),
-    path('reports_research_output/', views.reports_research_output, name='reports_research_output'),
     path('program/', views.program, name='program'),
-    path('reports_program/', views.reports_program, name='reports_program'),
     path('login_history/', views.login_history, name='login_history'),
-    path('reports_login_history/', views.reports_login_history, name='reports_login_history'),
     #### #####-REPORTS/PDF-##### ####
+
+    #### #####-ACCOUNTS/VIEW-##### ####
+    path('all_users/', views.all_users, name='all_users'),
+    path('all_admin/', views.all_admin, name='all_admin'),
+    path('all_faculty/', views.all_faculty, name='all_faculty'),
+    path('all_student/', views.all_student, name='all_student'),
+    #### #####-ACCOUNTS/VIEW-##### ####
 
     ####  #####-IMPORT/CSV-##### ####
     path('import_student_csv/', views.import_student_csv, name='import_student_csv'),
     path('import_faculty_csv/', views.import_faculty_csv, name='import_faculty_csv'),
     path('import_keyword_csv/', views.import_keyword_csv, name='import_keyword_csv'),
     ####  #####-IMPORT/CSV-##### ####
-
-
-
-
 ]

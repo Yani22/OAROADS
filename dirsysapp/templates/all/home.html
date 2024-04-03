@@ -3,69 +3,232 @@
 
 {% block title %}Home{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
-{% endblock extra_css %}
 
 {% block content %}
+
+{% block extra_css %}
+<style>
+    /* Pop Up */
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(82, 86, 89);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+        
+    }
+
+    .popup .popupIn {
+        width: 45%;
+        height: 100%;
+        position: absolute;
+        max-width: 45%;
+        max-height: 100%;
+    }
+
+    .popup .popupIn .frameSide,
+    .popup .popupIn .frameSide iframe {
+        width: 600px;
+        height: 100%;
+        border: none;
+    }
+
+    .close {
+        position: absolute;
+        top: 60px;
+        right: -1px;
+        background: #ffffff;
+        z-index: 99;
+        padding: 5px 8px;
+        border: none;
+        line-height: 14px;
+    }
+
+    #main_container {
+        position: relative;
+    }
+
+    #overlay {
+    width:580px;
+    height:94%;
+    z-index: 1;
+    background-color:rgba(255, 255, 0, 0.075);
+    
+    }
+    #overlay, iframe {
+    position: absolute;
+    }
+
+
+</style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+<link rel="shortcut icon" href="{% static 'images/ro-logo.png' %}" type="image/x-icon">
+{% endblock extra_css %}
+
 <!-- START -->
 
 <section>
+
     <div class="container">
         <div class="row">
             <div class="ban-tit">
                 <h1 style="color: black;">
                     <b style="color: black;">ST. MARY'S COLLEGE OF TAGUM, INC.<br></b>Research Outputs Summary
                 </h1>
-
             </div>
         </div>
-        <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-            <thead>
-                <tr>
-                    <th data-visible="false">keywords</th>
-                    <th>Title</th>
-                    <th>Program</th>
-                    <th>School Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for res in res_out %}
-                    {% for author in res.author.all %}
-                    {% for key in res.keyword.all %}
+        {% for message in messages %}
+        <div class="container-fluid p-0">
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="True">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+        <div id="myDIV">
+            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th data-visible="false">keywords</th>
+                        <th class="title">Title</th>
+                        <th style="text-align: center;">Program</th>
+                        <th>School Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for res in res_out %}
                         <tr>
-                            <td >{{key}}</td>
-                            {% if request.user.is_authenticated and end_users %}
-                            <td><a href="{{res.pdf.url}}">{{res.title}}</a></td>
-                            {% else %}
-                            <td><a href="/login">{{res.title}}</a></td>
-                            {% endif %}
-                            <td>{{author.program.name}}</td>
-                            <td>{{res.school_year}}</td>
-                            
-                        </tr>
-                        {% endfor %}
+                        <td style="text-align: center;">
+                            <ul>
+                                {% for key in res.keyword.all %}
+                                {{key}}
+                                {% endfor %}
+                            </ul>
+                        </td>
+
+
+                        {% if request.user.enduser.is_faculty == True %}
+                        <td>
+                            <div class="button" onclick="mybtn()"
+                                data-href="{{res.pdf.url}}">
+                                <a class="aws" style="color: #007bff; cursor: pointer;">
+                                    {{res.title}}
+                                </a>
+                            </div>
+                        </td>
+                        {% elif request.user.enduser.is_student == True %}
+                        <td>
+                            <div class="button" onclick="mybtn()"
+                                data-href="{{res.pdf.url}}">
+                                <a class="aws" style="color: #007bff; cursor: pointer;">
+                                    {{res.title}}
+                                </a>
+                            </div>
+                        </td>
+                        {% elif request.user.enduser.is_admin == True %}
+                        <td>
+                            <a href={{res.pdf.url}}>{{res.title}}</a>
+                        </td>
+                        {% else %}
+                        <td><a href="/login">{{res.title}}</a></td>
+
+                        {% endif %}
+                        <td style="text-align: center;">
+                            {{res.program}}
+                        </td>
+                        <td>{{res.school_year_from}} - {{res.school_year_to}}</td>
+                    </tr>
                     {% endfor %}
-                {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+    
+        <div id="ppp" class="popup">
+            <div class="popupIn">
+                <div onclick="mybtncls()" class="close">
+                    X
+                </div>
+                <div class="frameSide">
+                    <div id="overlay">
+                    </div>
+                    <iframe  frameborder="0" id="frm" width="600px" class="myIframe" src="X-Frame-Options: sameorigin http://127.0.0.1:8000" ></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
+
+
+
+
 <br>
 <!--END-->
-{% endblock %}
 
 {% block extra_scripts %}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="{% static 'js/newjs/popper.min.js' %}"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
 <script>
-    $(document).ready(function() {
+    var myTable = document.querySelectorAll('.table');
+    var myButton = document.querySelectorAll('.button');
+    var closeButton = document.querySelectorAll('.close');
+    var popup = document.querySelectorAll('.popup');
+    var popupInSide = document.querySelectorAll('.myIframe');
+
+    for (var i = 0; i < myButton.length; i++) {
+        myButton[i].addEventListener('click', function (event) {
+            var buttonPDFLink = this.getAttribute("data-href");
+            for (var i = 0; i < popup.length; i += 1) {
+                popup[i].style.display = 'flex';
+            }
+            for (var i = 0; i < popupInSide.length; i += 1) {
+                // The url I throw into the iframe is blocked because I don't use ssl. I used google doc viever instead
+                popupInSide[i].setAttribute("src", "" + buttonPDFLink)
+                
+            }
+        });
+    }
+
+    // close button side
+    for (var i = 0; i < closeButton.length; i++) {
+        closeButton[i].addEventListener('click', function (event) {
+            for (var i = 0; i < popup.length; i += 1) {
+                popupInSide[i].removeAttribute("src");
+                popup[i].style.display = 'none';
+            }
+
+        });
+    }
+
+    $(document).ready(function () {
         $('#example').DataTable();
-    } );
+    });
+
+    function mybtn() {
+        var x = document.getElementById("myDIV");
+        var p = document.getElementById("ppp");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+    function mybtncls() {
+        var x = document.getElementById("myDIV");
+        x.style.display = "block";
+    }
+
 </script>
 {% endblock extra_scripts %}
+{% endblock %}

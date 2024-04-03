@@ -4,28 +4,32 @@
 
 {% block title %}Add Keyword{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/new_css/bootstrap-select.css' %}" />
-{% endblock extra_css %}
 
 {% block content %}
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="shortcut icon" href="{% static 'images/icon/search1.png' %}" type="image/x-icon">
+{% endblock extra_css %}
 <section class=" login-reg">
     <div class="container">
         <div class="row">
             <div class="login-main">
+                {% for message in messages %}
+                <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="True">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
                 <div class="log-bor">&nbsp;</div>
                 <div class="log log-1">
                     <div class="login">
                         <h4>Add a Keyword</h4>
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-block alert-danger">
-                            <ul class="m-0">
-                                <li>{{ message }}</li>
-                            </ul>
-                        </div>
-                        {% endfor %}
-                        {% endif %}
+
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="fv-row mb-7">
@@ -53,3 +57,6 @@
     $('select').selectpicker();
 </script>
 {% endblock extra_scripts %}
+
+
+

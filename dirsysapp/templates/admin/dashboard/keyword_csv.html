@@ -3,12 +3,13 @@
 
 {% block title %}CSV Keyword{% endblock %}
 
+
+{% block content %}
 {% block extra_css %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+<link rel="shortcut icon" href="{% static 'images/icon/search1.png' %}" type="image/x-icon">
 {% endblock extra_css %}
-
-{% block content %}
 <!-- START -->
 <!-- START -->
 <section>
@@ -21,7 +22,16 @@
                 </h1>
                 <!--REGISTER_1-->
                 <div class="log log-1">
-
+                    {% for message in messages %}
+                    <div class="container-fluid p-0">
+                        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    </div>
+                    {% endfor %}
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="fv-row mb-7">
@@ -33,15 +43,6 @@
                             <button type="submit" class="btn btn-lg btn-primary">Import</button>
                         </form>
                         <br><br><hr>
-                        {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-block alert-danger">
-                                <ul class="m-0">
-                                    <li>{{ message }}</li>
-                                </ul>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
                 </div>
             </div>
         </div>

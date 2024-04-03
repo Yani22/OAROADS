@@ -7,6 +7,10 @@ Login
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% block extra_css %}
+<link rel="shortcut icon" href="{% static 'images/ro-logo.png' %}" type="image/x-icon">
+{% endblock extra_css %}
+
 <section class=" login-reg">
     <div class="container">
         <div class="row">
@@ -15,19 +19,19 @@ Login
                 <div class="log log-1">
                     <div class="login">
                         <h4>Login</h4>
-            
+                        {% for message in messages %}
+                        <div class="container-fluid p-0">
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="True">&times;</span>
+                                </button>
+                                {{ message }}
+                            </div>
+                        </div>
+                        {% endfor %}
                         <form method="POST" class="form-group">
                             {% csrf_token %}
                             <div class="fv-row mb-7">
-                                {% if messages %}
-                                    {% for message in messages %}
-                                        <div class="alert alert-block alert-danger"> 
-                                            <ul class="m-0">
-                                                <li>{{ message }}</li>
-                                            </ul>
-                                        </div>
-                                    {% endfor %}
-                                {% endif %}
                                 <strong class="text-dark fs-6 form-label fw-bolder">
                                     <div class="mb-3">
                                         <label for="username">Username</label>
@@ -43,18 +47,18 @@ Login
                             <div class="text-center">
                                 <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
                                     <span class="indicator-label">Login</span>
-
                                 </button>
+                                <br>
+                                <br>
+                                <br>
+                                <ul>
+                                    <li>
+                                        <span class="ll-3"><a href="/forgot_password">Forgot password?</a></span>
+                                    </li>
+                                </ul>
                             </div>
                         </form>
                     </div>
-                </div>
-                <div class="log-bot">
-                    <ul>
-                        <li>
-                            <span class="ll-3"><a href="#">password?</a></span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

@@ -1,0 +1,38 @@
+
+{% load static %}
+
+<!--LEFT SECTION-->
+<div class="ud-lhs">
+    <div class="ud-lhs-s1">
+        {% if request.user.enduser.profile == "" %}
+        <img src="{% static 'images/default.png' %}" alt="">
+        {% else %}
+        <img src="{{request.user.enduser.profile.url}}" alt="">
+        {% endif %}
+        <h4>{{request.user.enduser.first_name}}&nbsp;{{request.user.enduser.last_name}}&nbsp;
+        </h4>
+        <b><strong>({{request.user.enduser.program.name}})</strong></b>
+    </div>
+    <div class="ud-lhs-s2">
+        <ul>
+            <li>
+                <a href="/home" class>
+                    <img src="{% static 'images/icon/dbl1.png' %}" alt=""/>
+                    <strong>HOME</strong>
+                </a>
+            </li>
+            <li>
+                <a href="/edit_profile" class="db-lact">
+                    <img src="{% static 'images/icon/profile.png' %}" alt=""/>
+                    <strong>MY ACCOUNT</strong>
+                </a>
+            </li>
+            <hr>      <li>
+                <a href="/logout" class>
+                    <img src="{% static 'images/icon/logout.png' %}" alt=""/>
+                    <strong>LOGOUT</strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

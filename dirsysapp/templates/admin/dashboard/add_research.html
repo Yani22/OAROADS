@@ -1,93 +1,112 @@
 {% extends "main/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block content %}
 
 {% block title %}Add Research{% endblock %}
 
+<style>
+    #optionKeyword option:hover:not(.selected) {
+        background-color: rgb(206, 206, 206);
+        /* Add a hover effect to all links, except for headers */
+    }
+</style>
+
+
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/new_css/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
+<link rel="shortcut icon" href="{% static 'images/icon/blog1.png' %}" type="image/x-icon">
 {% endblock extra_css %}
 
-{% block content %}
 <section class=" login-reg">
     <div class="container">
         <div class="row">
-            <div class="login-main">
-                <div class="log-bor">&nbsp;</div>
-                <div class="log log-1">
-                    <div class="login">
-                        <h4>Add a research</h4>
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-block alert-danger">
-                            <ul class="m-0">
-                                <li>{{ message }}</li>
-                            </ul>
-                        </div>
-                        {% endfor %}
-                        {% endif %}
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="fv-row mb-7">
-                                <strong class="text-dark fs-6 form-label fw-bolder">
-                                    {{form.title|as_crispy_field}}
-
-                                    Keyword
-                                    <br>
-                                    <select multiple="multiple" name="keyword" id="keyword" title="" multiple data-live-search="true">
-                                        {% for keywords in keyword %}
-                                            <option value="{{keywords.id}}">{{keywords}}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <div>
-                                        <br>
-                                    </div>
-
-                                    Author*
-                                    <br>
-                                    <select multiple="multiple" name="author" id="author" title="" multiple data-live-search="true" required>
-                                        {% for authors in author %}
-                                            <option value="{{authors.id}}">
-                                                {{authors.first_name}}
-                                                {{authors.middle_name}}
-                                                {{authors.last_name}}
-                                                {{authors.first_suffix}}
-                                                
-                                                {% if authors.is_student == True %}
-                                                ({{authors.program.name}} - Student)
-                                                {% elif authors.is_faculty == True %}
-                                                ({{authors.program.name}} - Faculty)
-                                                {% elif authors.is_admin == True %}
-                                                (Admin)
-                                                {% endif %}
-                                            </option>
-                                        {% endfor %}
-                                    </select>
-                                    <div>
-                                        <br>
-                                    </div>
-
-                                    {{form.pdf|as_crispy_field}}
-                                    {{form.school_year|as_crispy_field}}
-                                </strong>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
-                                    <span class="indicator-label">Submit</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+            {% for message in messages %}
+            <div class="container-fluid p-0">
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="True">&times;</span>
+                    </button>
+                    {{ message }}
                 </div>
+            </div>
+            {% endfor %}
+            <h4><strong>ADD RESEARCH</strong></h4>
+            <div class="login">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form.title|as_crispy_field}}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                
+                                <label>Author</label><br>
+                                <select data-size="10" required data-live-search="true" class="selectpicker"
+                                    data-width="100%" title="Search for authors..." data-selected-text-format="count > 4" multiple name="author">
+                                    <optgroup label="STUDENT">
+                                        {% for authors in author %}
+                                            {% if authors.is_student == True %}
+                                            <option data-subtext="{{authors.program.name}}" value="{{authors.id}}">
+                                                {{authors.first_name}}
+                                                {{authors.last_name}}
+                                            </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+
+                                    <optgroup label="FACULTY">
+                                        {% for authors in author %}
+                                            {% if authors.is_faculty == True %}
+                                            <option data-subtext="{{authors.program.name}}" value="{{authors.id}}">
+                                                {{authors.first_name}}
+                                                {{authors.last_name}}
+                                            </option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Keyword</label><br>
+                                <select data-size="10" data-live-search="true" class="selectpicker" data-width="100%"
+                                    title="Search for keywords..." data-selected-text-format="count > 4" multiple  name="keyword">
+                                    {% for keywords in keyword %}
+                                    <option value="{{keywords.id}}">{{keywords}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-7">
+                                {{form.program|as_crispy_field}}
+                            </div>
+                            <div class="col">
+                                {{form.school_year_from|as_crispy_field}}
+                            </div>
+                            <div class="col">
+                                {{form.school_year_to|as_crispy_field}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-md-3">
+                                <label>PDF File</label>
+                                {{form.pdf}}
+                            </div>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-{% endblock %}
 
 {% block extra_scripts %}
-<script src="{% static 'js/newjs/bootstrap-select.min.js' %}"></script>
-<script>
-    $('select').selectpicker();
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
 {% endblock extra_scripts %}
+{% endblock %}

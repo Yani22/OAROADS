@@ -85,7 +85,7 @@ select.selectpicker {
   width: auto !important;
 }
 .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-  width: 220px;
+  width: 100%;
 }
 .bootstrap-select .dropdown-toggle:focus {
   outline: thin dotted #333333 !important;
@@ -172,8 +172,8 @@ select.selectpicker {
 }
 .bootstrap-select .dropdown-toggle .filter-option {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: auto;
+  left: auto;
   padding-top: inherit;
   padding-right: inherit;
   padding-bottom: inherit;
@@ -186,11 +186,21 @@ select.selectpicker {
   padding-right: inherit;
 }
 .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
-  overflow: hidden;
+  position: auto;
+  left: 30px;
+  border: 1px solid #000000;
+  size: 10ch;
+  overflow: scroll;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 1%;
+  
 }
 .bootstrap-select .dropdown-toggle .caret {
   position: absolute;
-  top: 50%;
+  top: 100%;
   right: 12px;
   margin-top: -2px;
   vertical-align: middle;

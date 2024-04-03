@@ -7,20 +7,24 @@ Add Student Account
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% block extra_css %}
+<link rel="shortcut icon" href="{% static 'images/icon/students.png' %}" type="image/x-icon">
+{% endblock extra_css %}
 <section class=" login-reg">
     <div class="container">
         <div class="row">
             <div class="login-main">
                 <div class="text-center">
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-block alert-danger">
-                                <ul class="m-0">
-                                    <li>{{ message }}</li>
-                                </ul>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+                    {% for message in messages %}
+                    <div class="container-fluid p-0">
+                        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="True">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    </div>
+                    {% endfor %}
                     <h4>Add Student Account</h4>
                 </div>
                 <div class="log-bor">&nbsp;</div>
@@ -32,10 +36,9 @@ Add Student Account
                             <div class="fv-row mb-7">
                                 <strong class="text-dark fs-6 form-label fw-bolder">
                                     {{form.program|as_crispy_field}}
+                                    {{form.id_number|as_crispy_field}}
                                     {{form.first_name|as_crispy_field}}
-                                    {{form.middle_name|as_crispy_field}}
                                     {{form.last_name|as_crispy_field}}
-                                    {{form.suffix_name|as_crispy_field}}
                                 </strong>
                             </div>
                             <div class="text-center">

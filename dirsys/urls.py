@@ -18,14 +18,11 @@ from django.urls import path, include
 #from registerapp import views as registerAppViews
 from django.conf import settings
 from django.conf.urls.static import static
-from django.conf.urls import url
+# from django.conf.urls import url
 from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-#    path("add_researcher/", registerAppViews.signup, name="add_researcher"),
-#    path("add_researcher_2/<str:pk>", registerAppViews.personal, name="add_researcher_2"),
- #   path("login/", registerAppViews.login_user, name="login"),
     path('', include('dirsysapp.urls')),
     path('', include("django.contrib.auth.urls")),
 ]

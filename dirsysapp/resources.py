@@ -7,7 +7,7 @@ from .models import *
 class EndUserResource(resources.ModelResource):
     class meta:
         model = EndUser
-        fields = ["program", "first_name", "middle_name", "last_name", "suffix_name"]
+        fields = ["program", "first_name", "last_name"]
 
 class KeywordResource(resources.ModelResource):
     class meta:

@@ -4,7 +4,9 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-
+{% block extra_css %}
+<link rel="shortcut icon" href="{% static 'images/admin-logo.jpg' %}" type="image/x-icon">
+{% endblock extra_css %}
 
 <section class=" ud">
     <div class="ud-inn">
@@ -12,22 +14,23 @@
 
         <!--CENTER SECTION-->
         <div class="ud-cen">
+            {% for message in messages %}
+                <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="True">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
             <div class="log-bor">&nbsp;</div>
                 <span class="udb-inst">Dashboard</span>
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-block alert-danger">
-                            <ul class="m-0">
-                                <li>{{ message }}</li>
-                            </ul>
-                        </div>
-                    {% endfor %}
-                {% endif %}
 
                 {% for end_user in end_users %}
                     <div class="cd-cen-intr">
                         <div class="cd-cen-intr-inn">
-                            <h2>Welcom back, <b>{{end_user.first_name}}</b></h2>
+                            <h2>Welcome back, <b>{{end_user.first_name}}</b></h2>
                             <p>Stay up to date in your researches here.</p>
                         </div>
                     </div>
@@ -35,26 +38,26 @@
                         <ul>
                             <li>
                                 <div> 
-                                    <b>{{total_faculty}}</b>
-                                    <h4>Faculty</h4>
-                                    <p>Total No.</p>
-                                    <a href="#">&nbsp;</a>
+                                    <b>{{active_users}}</b>
+                                    <h4>Active Users</h4>
+                                    <p>Total No. of Active Users</p>
+                                    <a href="/all_users">&nbsp;</a>
                                 </div>
                             </li>
                             <li>
                                 <div>
                                     <b>{{total_res_out}}</b>
                                     <h4>Research</h4>
-                                    <p>Total No.</p>
-                                    <a href="#">&nbsp;</a>
+                                    <p>Total No. of Research</p>
+                                    <a href="/research_output">&nbsp;</a>
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    <b>{{total_student}}</b>
-                                    <h4>Student</h4>
-                                    <p>Total No.</p>
-                                    <a href="#">&nbsp;</a>
+                                    <b>{{inactive_users}}</b>
+                                    <h4>Inactive Users</h4>
+                                    <p>Total No. of Inactive Users</p>
+                                    <a href="/all_users">&nbsp;</a>
                                 </div>
                             </li>
                         </ul>
@@ -67,7 +70,11 @@
                             <div class="pay-lhs">
                                 <div class="lis-pro-badg">
                                     <div>
+                                        {% if request.user.enduser.profile == "" %}
+                                        <img src="{% static 'images/default.png' %}" alt="">
+                                        {% else %}
                                         <img src="{{request.user.enduser.profile.url}}" alt="">
+                                        {% endif %}
                                         <h4>{{end_user.first_name}}</h4>
                                     </div>
                                     <a href="/edit_profile" class="fclick"

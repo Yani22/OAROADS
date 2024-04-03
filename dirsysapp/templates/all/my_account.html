@@ -1,0 +1,81 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Account{% endblock %}
+
+{% block content %}
+
+<section class=" ud">
+    <div class="ud-inn">
+        {% include "all/left.html" %}
+        <!--CENTER SECTION-->
+        <div class="ud-cen">
+            <div class="log-bor">&nbsp;</div>
+            <span class="udb-inst">My Account</span>
+            <div class="ud-cen-s2 ud-pro-edit">
+                <h2>Account Information</h2>
+                {% for message in messages %}
+                <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="True">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
+                <form method="POST" enctype="multipart/form-data" name="update_profileForm">
+                    {% csrf_token %}
+                    <table class="responsive-table bordered">
+                        <tbody>
+                            <tr>
+                                <td>Profile Picture</td>
+                                <td>{{form1.profile|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td>{{form1.first_name|as_crispy_field}}</td>
+                            </tr>
+                            <tr>
+                                <td>Last Name</td>
+                                <td>{{form1.last_name|as_crispy_field}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="log-bot">
+                        <ul>
+                            <button type="submit" name="btnupdateprofile" class="btn btn-primary">Update</button>
+                        </ul>
+                        <br>
+                        <ul>
+                            <li>
+                                <span class="ll-3"><a href="/change_password">Change password?</a></span>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END CENTER SECTION -->
+        <!--RIGHT SECTION-->
+        <div class="ud-rhs">
+            <!--RIGHT SECTION-->
+            <div class="ud-rhs-sec-1">
+                <h4>Login History</h4>
+                <ul>
+                    {% for his in log_his %}
+                    <li>
+                        <a href="/login_history">
+                            <h5>{{his.end_user.first_name}}&nbsp;{{his.end_user.last_name}}&nbsp;</h5>
+                            <p>{{his.login_date}}</p>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

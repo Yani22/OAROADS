@@ -18,7 +18,7 @@ class EndUserAdmin(ImportExportModelAdmin):
 class KeywordAdmin(ImportExportModelAdmin):
     list_display = ('id','keyword_name',)
 
-
 admin.site.register(Research)
 admin.site.register(LoginHistory)
 admin.site.register(Program)
+admin.site.register(PDFtoImages)
